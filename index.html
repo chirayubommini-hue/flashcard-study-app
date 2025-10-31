@@ -1,0 +1,72 @@
+<HTML<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Study App - Flashcards</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .flashcard {
+    background-color: white;
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin: 20px;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Study Flashcards</h1>
+<div class="flashcard" id="flashcard" onclick="flipCard()">Click to Flip</div>
+
+<script>
+const flashcards = [
+  { question: "What is 7 x 8?", answer: "56" },
+  { question: "Capital of India?", answer: "New Delhi" },
+  { question: "Speed of light?", answer: "3 x 10^8 m/s" }
+];
+
+let currentIndex = 0;
+let showingAnswer = false;
+
+const card = document.getElementById("flashcard");
+
+function showQuestion() {
+  card.textContent = flashcards[currentIndex].question;
+  showingAnswer = false;
+}
+
+function showAnswer() {
+  card.textContent = flashcards[currentIndex].answer;
+  showingAnswer = true;
+}
+
+function flipCard() {
+  if (!showingAnswer) {
+    showAnswer();
+  } else {
+    currentIndex = (currentIndex + 1) % flashcards.length;
+    showQuestion();
+  }
+}
+
+// Initialize first card
+showQuestion();
+</script>
+
